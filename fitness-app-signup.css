@@ -1,0 +1,847 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    color: #ffffff;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Background Effects */
+.background-effects {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 255, 157, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Header */
+.header {
+    padding: 2rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+}
+
+
+
+/* Challenge Notification Demo */
+.challenge-notification {
+    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 500px;
+    margin: 0 auto 2rem auto;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    position: relative;
+    animation: challengePulse 3s ease-in-out infinite;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: linear-gradient(135deg, #ff6b35, #f7931e);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.5);
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.challenge-header {
+    color: #ffd700;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+/* VS Section */
+.vs-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 1.5rem;
+}
+
+.fighter {
+    text-align: center;
+}
+
+.fighter-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 auto 0.5rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.fighter-avatar.challenger {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.fighter-avatar.defender {
+    background: linear-gradient(135deg, #ff6b35, #f7931e);
+    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+}
+
+.fighter-name.challenger {
+    color: #00ff9d;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.fighter-name.defender {
+    color: #ff6b35;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.vs-text {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #ffd700;
+    margin: 0 1rem;
+}
+
+/* Challenge Details */
+.challenge-details {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.challenge-exercise {
+    color: #00ff9d;
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.challenge-numbers {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.weight-number {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+}
+
+.reps-number {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #ff6b35;
+    font-family: 'Courier New', monospace;
+}
+
+.number-unit {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.number-multiply {
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+
+.challenge-taunt {
+    color: #888;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    flex: 1;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    min-width: 120px;
+    transition: all 0.3s ease;
+}
+
+.btn-accept {
+    background: linear-gradient(135deg, #00ff9d, #00cc7a);
+    color: #000;
+}
+
+.btn-decline {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-decline:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Hero Section - Challenge Demo + Signup Layout */
+.hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    min-height: 80vh;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Challenge Demo Side */
+.challenge-demo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.demo-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.demo-eyebrow {
+    color: #ff6b35;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.demo-headline {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 800;
+    margin: 0 0 2rem 0;
+    background: linear-gradient(135deg, #ffffff 0%, #ffd700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.demo-cta {
+    color: #b0b0b0;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+/* Signup Form Side */
+.signup-container {
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+}
+
+.signup-card {
+    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+    border-radius: 25px;
+    padding: 3rem 2.5rem;
+    box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.signup-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.signup-content {
+    position: relative;
+    z-index: 1;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem 0;
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.form-subtitle {
+    color: #888;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.launch-badge {
+    background: linear-gradient(135deg, #ff6b35, #f7931e);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+}
+
+/* Form Styles */
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: rgba(0, 255, 157, 0.5);
+    box-shadow: 0 0 0 3px rgba(0, 255, 157, 0.1);
+}
+
+.form-input::placeholder {
+    color: #888;
+}
+
+.form-select {
+    width: 100%;
+    padding: 1.2rem 3rem 1.2rem 1.2rem; /* Add right padding for custom arrow */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    /* Remove default arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Add custom arrow */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center; /* Position arrow 1rem from right edge */
+    background-size: 16px;
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: rgba(0, 255, 157, 0.5);
+    box-shadow: 0 0 0 3px rgba(0, 255, 157, 0.1);
+}
+
+.form-select option {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+.form-select option[value=""] {
+    color: #888;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-top: 0.2rem;
+    transform: scale(1.2);
+}
+
+.checkbox-group label {
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.checkbox-group a {
+    color: #00ff9d;
+    text-decoration: none;
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, #00ff9d, #00cc7a);
+    color: #000;
+    border: none;
+    padding: 1.4rem 2rem;
+    border-radius: 15px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0, 255, 157, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 1rem;
+}
+
+.btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 255, 157, 0.4);
+}
+
+.app-store-preview {
+    display: flex;
+    justify-content: space-around;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+/* App Store Badge Styling */
+.app-store-badge {
+    height: 60px;
+    width: auto;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    /* Remove backgrounds if they have them */
+    background-color: transparent;
+}
+
+.app-store-badge:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Specific badge styling if needed */
+.ios-badge {
+    /* iOS App Store specific styling */
+}
+
+.android-badge {
+    /* Google Play Store specific styling */
+}
+
+.store-badge {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+}
+
+.store-badge span:first-child {
+    font-size: 1rem;
+}
+
+.store-badge span:last-child {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Features Section */
+.features-section {
+    padding: 4rem 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.features-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.features-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 3rem;
+    background: linear-gradient(135deg, #ffffff 0%, #ffd700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.feature-card {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+    object-fit: contain;
+    filter: brightness(1.1);
+}
+
+/* Inverted color icons (first 2 icons) */
+.inverted-icon {
+    filter: invert(1) brightness(1.1);
+}
+
+.feature-card h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.feature-card h4.send {
+    color: #00ff9d;
+}
+
+.feature-card h4.battle {
+    color: #ff6b35;
+}
+
+.feature-card h4.victory {
+    color: #ffd700;
+}
+
+.feature-card p {
+    color: #b0b0b0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.footer-text {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes challengePulse {
+    0%, 100% { 
+        box-shadow: 
+            0 20px 40px rgba(0, 0, 0, 0.6),
+            0 0 0 1px rgba(255, 255, 255, 0.1),
+            0 0 0 0px rgba(255, 215, 0, 0.4);
+    }
+    50% { 
+        box-shadow: 
+            0 25px 50px rgba(0, 0, 0, 0.7),
+            0 0 0 1px rgba(255, 255, 255, 0.1),
+            0 0 0 8px rgba(255, 215, 0, 0.2);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Hero Section - Stack Vertically on Mobile */
+    .hero-section {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem 1rem;
+        min-height: auto;
+    }
+    
+    /* Challenge Demo Mobile */
+    .challenge-demo {
+        order: 1; /* Challenge demo first on mobile */
+        padding: 1rem 0;
+        text-align: center;
+    }
+    
+    .demo-container {
+        padding: 0 1rem;
+    }
+    
+    .demo-headline {
+        font-size: clamp(1.3rem, 5vw, 2rem);
+        margin-bottom: 1.5rem;
+    }
+    
+    .challenge-notification {
+        padding: 1.5rem;
+        max-width: 100%;
+        margin: 0 auto 1.5rem auto;
+    }
+    
+    /* Signup Form Mobile */
+    .signup-container {
+        order: 2; /* Signup form second on mobile */
+        position: static;
+        top: auto;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .signup-card {
+        padding: 2rem 1.5rem;
+        margin: 0 1rem;
+        border-radius: 20px;
+    }
+    
+    /* VS Section Mobile */
+    .vs-section {
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .fighter-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    .vs-text {
+        font-size: 1.2rem;
+        margin: 0 0.5rem;
+    }
+    
+    /* Challenge Details Mobile */
+    .challenge-details {
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .weight-number {
+        font-size: 1.5rem;
+    }
+    
+    .reps-number {
+        font-size: 1.2rem;
+    }
+    
+    /* Action Buttons Mobile */
+    .action-buttons {
+        flex-direction: column;
+        gap: 0.6rem;
+    }
+    
+    .btn {
+        min-width: auto;
+        padding: 0.7rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    /* Form Mobile */
+    .form-input, .form-select {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .btn-submit {
+        padding: 1.2rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    /* Features Section Mobile */
+    .features-section {
+        padding: 3rem 1rem;
+    }
+    
+    .features-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .feature-card {
+        padding: 1.5rem;
+    }
+    
+    .feature-icon {
+        width: 56px;
+        height: 56px;
+    }
+    
+    /* Footer Mobile */
+    .footer {
+        padding: 2rem 1rem;
+    }
+    
+    .footer-links {
+        gap: 1rem;
+    }
+    
+    /* App Store Badges Mobile */
+    .app-store-badge {
+        height: 50px;
+    }
+    
+    .app-store-preview {
+        gap: 0.6rem;
+        margin-top: 1rem;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 480px) {
+    .demo-headline {
+        font-size: clamp(1.2rem, 6vw, 1.8rem);
+    }
+    
+    .signup-card {
+        margin: 0 0.5rem;
+        padding: 1.5rem 1rem;
+    }
+    
+    .challenge-notification {
+        padding: 1rem;
+    }
+    
+    .vs-section {
+        gap: 0.5rem;
+    }
+    
+    .fighter-avatar {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+    
+    .fighter-name {
+        font-size: 0.8rem;
+    }
+    
+    /* Feature Icons Extra Small Mobile */
+    .feature-icon {
+        width: 48px;
+        height: 48px;
+    }
+    
+    /* App Store Badges Extra Small Mobile */
+    .app-store-badge {
+        height: 45px;
+    }
+    
+    .app-store-preview {
+        gap: 0.4rem;
+        flex-direction: column;
+        align-items: center;
+    }
+} 
