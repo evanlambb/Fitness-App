@@ -501,14 +501,6 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Specific badge styling if needed */
-.ios-badge {
-    /* iOS App Store specific styling */
-}
-
-.android-badge {
-    /* Google Play Store specific styling */
-}
 
 .store-badge {
     background: rgba(255, 255, 255, 0.1);

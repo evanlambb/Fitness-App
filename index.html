@@ -6,6 +6,7 @@
     <title>Join the Battle - Fitness Challenge App</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="fitness-app-signup.css">
+    <link rel="stylesheet" href="css/signup-messages.css">
 </head>
 <body>
 
@@ -121,20 +122,20 @@
                         
                         <!-- Email Input -->
                         <div class="form-group">
-                            <label>Email Address</label>
-                            <input type="email" placeholder="your.email@gym.com" required class="form-input">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@gym.com" required class="form-input">
                         </div>
 
                         <!-- Name Input -->
                         <div class="form-group">
-                            <label>Gym Name (what friends call you)</label>
-                            <input type="text" placeholder="Beast Mode Mike" required class="form-input">
+                            <label for="gym_name">Gym Name (what friends call you)</label>
+                            <input type="text" id="gym_name" name="gym_name" placeholder="Beast Mode Mike" required class="form-input">
                         </div>
 
                         <!-- Strength Level -->
                         <div class="form-group">
-                            <label>Your Training Level</label>
-                            <select required class="form-select">
+                            <label for="training_level">Your Training Level</label>
+                            <select id="training_level" name="training_level" required class="form-select">
                                 <option value="">Choose your level...</option>
                                 <option value="intermediate">Intermediate (1-3 years)</option>
                                 <option value="advanced">Advanced (3-5 years)</option>
@@ -215,6 +216,13 @@
         </div>
     </footer>
 </div>
+
+<!-- Supabase JavaScript Client -->
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+<!-- Our JavaScript Files -->
+<script src="js/supabase-config.js"></script>
+<script src="js/signup-handler.js"></script>
 
 </body>
 </html> 
