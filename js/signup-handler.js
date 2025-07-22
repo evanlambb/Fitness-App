@@ -60,14 +60,21 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Signup successful:', data)
             
         } catch (error) {
-            console.error('Signup error:', error)
+            console.error('🚨 Signup error details:', error)
+            console.error('Error code:', error.code)
+            console.error('Error message:', error.message)
+            console.error('Full error object:', JSON.stringify(error, null, 2))
             
             // Handle specific error cases
             if (error.code === '23505') {
                 // Duplicate email
                 showMessage('This email is already registered! You\'re already on the list.', 'warning')
+            } else if (error.message?.includes('relation "fitness_signups" does not exist')) {
+                showMessage('Database table not found. Please run the SQL schema in Supabase.', 'error')
+            } else if (error.message?.includes('JWT')) {
+                showMessage('Authentication error. Please check your Supabase configuration.', 'error')
             } else {
-                showMessage('Something went wrong. Please try again in a moment.', 'error')
+                showMessage(`Error: ${error.message || 'Something went wrong. Please try again.'}`, 'error')
             }
         } finally {
             // Re-enable submit button

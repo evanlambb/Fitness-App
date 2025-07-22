@@ -9,9 +9,5 @@ const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 // Export for use in other files
 window.supabaseClient = supabase
 
-// Debug: Log configuration status
-console.log('🔧 Supabase Configuration:')
-console.log('URL:', SUPABASE_URL)
-console.log('Key length:', SUPABASE_ANON_KEY.length)
-console.log('Key starts with eyJ:', SUPABASE_ANON_KEY.startsWith('eyJ'))
-console.log('Supabase client created:', !!supabase) 
+// Optional: Log configuration status (remove in production)
+console.log('✅ Supabase configured successfully') 
