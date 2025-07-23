@@ -17,12 +17,26 @@ document.addEventListener('DOMContentLoaded', function() {
         // Validate form
         if (!email || !gymName || !trainingLevel || !termsAccepted) {
             showMessage('Please fill in all fields and accept the terms.', 'error')
+            // Track validation error
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'form_validation_error', {
+                    event_category: 'signup',
+                    event_label: 'incomplete_form'
+                })
+            }
             return
         }
         
         // Validate email format
         if (!isValidEmail(email)) {
             showMessage('Please enter a valid email address.', 'error')
+            // Track email validation error
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'form_validation_error', {
+                    event_category: 'signup',
+                    event_label: 'invalid_email'
+                })
+            }
             return
         }
         
@@ -53,10 +67,27 @@ document.addEventListener('DOMContentLoaded', function() {
             // Success! Show success message
             showMessage('🔥 Welcome to the battle! You\'re now on the early access list.', 'success')
             
+            // Track successful signup in Google Analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'sign_up', {
+                    event_category: 'engagement',
+                    event_label: 'early_access_signup',
+                    custom_parameters: {
+                        training_level: trainingLevel,
+                        source: 'landing_page'
+                    }
+                })
+                
+                // Track as conversion
+                gtag('event', 'conversion', {
+                    send_to: 'G-J1FPHPCNWF/signup'
+                })
+            }
+            
             // Reset form
             signupForm.reset()
             
-            // Optional: Track successful signup (you can integrate with analytics later)
+            // Log for debugging
             console.log('Signup successful:', data)
             
         } catch (error) {
@@ -66,13 +97,23 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Full error object:', JSON.stringify(error, null, 2))
             
             // Handle specific error cases
-            if (error.code === '23505') {
-                // Duplicate email
-                showMessage('This email is already registered! You\'re already on the list.', 'warning')
+            if (error.code === '23505' || error.message?.includes('duplicate key value')) {
+                // Duplicate email - PostgreSQL unique constraint violation
+                showMessage('🎯 Good news! This email is already on our early access list. You\'re all set!', 'warning')
+                
+                // Track duplicate signup attempt
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'duplicate_signup_attempt', {
+                        event_category: 'signup',
+                        event_label: 'email_already_registered'
+                    })
+                }
             } else if (error.message?.includes('relation "fitness_signups" does not exist')) {
                 showMessage('Database table not found. Please run the SQL schema in Supabase.', 'error')
-            } else if (error.message?.includes('JWT')) {
+            } else if (error.message?.includes('JWT') || error.message?.includes('Invalid API key')) {
                 showMessage('Authentication error. Please check your Supabase configuration.', 'error')
+            } else if (error.message?.includes('violates check constraint')) {
+                showMessage('Please select a valid training level from the dropdown.', 'error')
             } else {
                 showMessage(`Error: ${error.message || 'Something went wrong. Please try again.'}`, 'error')
             }

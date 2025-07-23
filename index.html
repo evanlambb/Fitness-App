@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join the Battle - Fitness Challenge App</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1FPHPCNWF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-J1FPHPCNWF');
+    </script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="fitness-app-signup.css">
     <link rel="stylesheet" href="css/signup-messages.css">
@@ -148,7 +158,7 @@
                             <input type="checkbox" id="terms" required>
                             <label for="terms">
                                 I agree to receive early access updates and launch notifications. No spam, just strength. 
-                                <a href="#">Privacy Policy</a>
+                                <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
                             </label>
                         </div>
 
@@ -209,10 +219,9 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-text">
-            
         </div>
         <div class="footer-links">
-            
+            <a href="privacy-policy.html">Privacy Policy</a>
         </div>
     </footer>
 </div>
@@ -223,6 +232,7 @@
 <!-- Our JavaScript Files -->
 <script src="js/supabase-config.js"></script>
 <script src="js/signup-handler.js"></script>
+<script src="js/analytics-events.js"></script>
 
 </body>
 </html> 
