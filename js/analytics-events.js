@@ -36,6 +36,30 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     })
     
+    // Track social media clicks
+    const socialIcons = document.querySelectorAll('.social-icon')
+    socialIcons.forEach(icon => {
+        icon.addEventListener('click', function(e) {
+            const platform = icon.classList.contains('instagram') ? 'instagram' :
+                           icon.classList.contains('tiktok') ? 'tiktok' :
+                           icon.classList.contains('youtube') ? 'youtube' : 'unknown'
+            
+            const location = 'footer'
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'social_media_click', {
+                    event_category: 'engagement',
+                    event_label: `${platform}_${location}`,
+                    custom_parameters: {
+                        platform: platform,
+                        location: location,
+                        coming_soon: false
+                    }
+                })
+            }
+        })
+    })
+    
     // Track challenge demo interactions
     const challengeButtons = document.querySelectorAll('.btn-accept, .btn-decline')
     challengeButtons.forEach(button => {

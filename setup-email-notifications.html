@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Notifications Setup - Fitness App</title>
+    <style>
+        body { font-family: 'Inter', Arial, sans-serif; background: #0a0a0a; color: #ffffff; padding: 2rem; line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .option { background: #1a1a1a; border-radius: 15px; padding: 2rem; margin: 2rem 0; border: 1px solid #333; }
+        .option h2 { color: #00ff9d; margin-top: 0; }
+        .difficulty { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600; }
+        .easy { background: #00ff9d; color: #000; }
+        .medium { background: #ffd700; color: #000; }
+        .advanced { background: #ff6b35; color: #fff; }
+        .code { background: #0a0a0a; padding: 1rem; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 0.9rem; overflow-x: auto; }
+        .step { background: #222; padding: 1rem; margin: 1rem 0; border-radius: 8px; border-left: 4px solid #00ff9d; }
+        .warning { background: #2a1a1a; border-left: 4px solid #ff6b35; }
+        .success { background: #1a2a1a; border-left: 4px solid #00ff9d; }
+        a { color: #00ff9d; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔔 Email Notification Setup</h1>
+        <p>Choose the method that works best for you:</p>
+
+        <!-- Zapier Option -->
+        <div class="option">
+            <h2>🚀 Option 1: Zapier <span class="difficulty easy">EASIEST</span></h2>
+            <p><strong>Perfect for:</strong> Non-technical users who want notifications working in 10 minutes</p>
+            
+            <div class="step">
+                <h4>Step 1: Create Zapier Account</h4>
+                <p>Go to <a href="https://zapier.com" target="_blank">zapier.com</a> and sign up (free for 100 emails/month)</p>
+            </div>
+
+            <div class="step">
+                <h4>Step 2: Set Up Webhook in Supabase</h4>
+                <p>In your Supabase Dashboard:</p>
+                <ul>
+                    <li>Go to <strong>Database → Webhooks</strong></li>
+                    <li>Click <strong>"Create a new webhook"</strong></li>
+                    <li><strong>Name:</strong> New Signup Notification</li>
+                    <li><strong>Table:</strong> fitness_signups</li>
+                    <li><strong>Events:</strong> INSERT only ✅</li>
+                    <li><strong>HTTP URL:</strong> (Get from Zapier in next step)</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h4>Step 3: Create Zapier Integration</h4>
+                <p>In Zapier:</p>
+                <ul>
+                    <li><strong>Trigger:</strong> "Webhooks by Zapier" → "Catch Hook"</li>
+                    <li>Copy the webhook URL and paste it in Supabase</li>
+                    <li><strong>Action:</strong> "Email by Zapier" or "Gmail"</li>
+                    <li><strong>To:</strong> darefitness14@gmail.com</li>
+                    <li><strong>Subject:</strong> 🔥 New Signup: {{gym_name}}</li>
+                </ul>
+            </div>
+
+            <div class="step success">
+                <h4>✅ Done!</h4>
+                <p>Test by submitting a signup. You should receive an email within 1-2 minutes.</p>
+            </div>
+        </div>
+
+        <!-- EmailJS Option -->
+        <div class="option">
+            <h2>📧 Option 2: EmailJS <span class="difficulty medium">MEDIUM</span></h2>
+            <p><strong>Perfect for:</strong> Developers who want quick integration with their existing setup</p>
+
+            <div class="step">
+                <h4>Step 1: Create EmailJS Account</h4>
+                <p>Go to <a href="https://www.emailjs.com/" target="_blank">emailjs.com</a> and sign up (200 emails/month free)</p>
+            </div>
+
+            <div class="step">
+                <h4>Step 2: Set Up Email Service</h4>
+                <ul>
+                    <li>In EmailJS dashboard: <strong>Email Services → Add New Service</strong></li>
+                    <li>Choose your email provider (Gmail recommended)</li>
+                    <li>Follow the connection steps</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h4>Step 3: Create Email Template</h4>
+                <p><strong>Email Templates → Create New Template</strong></p>
+                <div class="code">Subject: 🔥 New Early Access Signup: {{user_name}}
+
+&lt;h2&gt;🔥 New Early Access Signup!&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Gym Name:&lt;/strong&gt; {{user_name}}&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Email:&lt;/strong&gt; {{user_email}}&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Training Level:&lt;/strong&gt; {{training_level}}&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Date:&lt;/strong&gt; {{signup_date}} at {{signup_time}}&lt;/p&gt;</div>
+            </div>
+
+            <div class="step">
+                <h4>Step 4: Get Your Credentials</h4>
+                <ul>
+                    <li><strong>Service ID:</strong> From Email Services page</li>
+                    <li><strong>Template ID:</strong> From Email Templates page</li>
+                    <li><strong>Public Key:</strong> From Integration → API Keys</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h4>Step 5: Update Your Website</h4>
+                <p>Add these scripts before closing &lt;/body&gt; tag in index.html:</p>
+                <div class="code">&lt;!-- EmailJS --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"&gt;&lt;/script&gt;
+&lt;script src="js/email-notifications.js"&gt;&lt;/script&gt;</div>
+                
+                <p>Update credentials in <code>js/email-notifications.js</code>:</p>
+                <div class="code">const EMAILJS_SERVICE_ID = 'your_service_id_here'
+const EMAILJS_TEMPLATE_ID = 'your_template_id_here' 
+const EMAILJS_PUBLIC_KEY = 'your_public_key_here'</div>
+            </div>
+
+            <div class="step success">
+                <h4>✅ Done!</h4>
+                <p>Test by submitting a signup. Check browser console for "Email sent successfully" message.</p>
+            </div>
+        </div>
+
+        <!-- Supabase Edge Functions Option -->
+        <div class="option">
+            <h2>💪 Option 3: Supabase Edge Functions <span class="difficulty advanced">ADVANCED</span></h2>
+            <p><strong>Perfect for:</strong> Developers who want full control and custom email designs</p>
+
+            <div class="step warning">
+                <h4>Prerequisites</h4>
+                <ul>
+                    <li>Node.js installed</li>
+                    <li>Comfortable with command line</li>
+                    <li>Want custom email designs</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h4>Quick Setup</h4>
+                <div class="code">npm install -g supabase
+supabase functions deploy notify-new-signup
+supabase secrets set RESEND_API_KEY=your_key_here</div>
+                <p>See <code>supabase/functions/notify-new-signup/README.md</code> for detailed instructions.</p>
+            </div>
+        </div>
+
+        <!-- Recommendation -->
+        <div class="option" style="border: 2px solid #00ff9d;">
+            <h2>🎯 Our Recommendation</h2>
+            <p><strong>Start with Zapier</strong> - it's the fastest way to get notifications working.</p>
+            <p>You can always upgrade to EmailJS or Edge Functions later if you need more customization.</p>
+            
+            <div class="step success">
+                <h4>Why Zapier First?</h4>
+                <ul>
+                    <li>✅ Works in 10 minutes</li>
+                    <li>✅ No code changes needed</li>
+                    <li>✅ Very reliable</li>
+                    <li>✅ Easy to modify later</li>
+                </ul>
+            </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 3rem;">
+            <a href="index.html">← Back to Fitness App</a>
+        </p>
+    </div>
+</body>
+</html> 

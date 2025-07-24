@@ -84,6 +84,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
             }
             
+            // Send email notification if available
+            if (typeof sendSignupNotification === 'function') {
+                sendSignupNotification({
+                    gymName: gymName,
+                    email: email,
+                    trainingLevel: trainingLevel
+                })
+            }
+            
             // Reset form
             signupForm.reset()
             
