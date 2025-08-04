@@ -22,9 +22,9 @@ body {
     right: 0;
     bottom: 0;
     background-image: 
-        radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(0, 255, 157, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+        radial-gradient(circle at 20% 20%, rgba(220, 38, 38, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
     pointer-events: none;
     z-index: 0;
 }
@@ -58,10 +58,7 @@ body {
 .logo {
     font-size: 1.5rem;
     font-weight: 900;
-    background: linear-gradient(135deg, #ffd700, #ffed4e);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #ffffff;
     letter-spacing: -0.02em;
     margin: 0;
 }
@@ -114,7 +111,7 @@ body {
 }
 
 .header-social-media .social-icon.youtube:hover svg {
-    fill: #ff0000;
+    fill: #dc2626;
 }
 
 
@@ -129,7 +126,7 @@ body {
     box-shadow: 
         0 20px 40px rgba(0, 0, 0, 0.6),
         0 0 0 1px rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 215, 0, 0.3);
+    border: 1px solid rgba(220, 38, 38, 0.4);
     position: relative;
     animation: challengePulse 3s ease-in-out infinite;
 }
@@ -138,7 +135,7 @@ body {
     position: absolute;
     top: -10px;
     right: -10px;
-    background: linear-gradient(135deg, #ff6b35, #f7931e);
+    background: linear-gradient(135deg, #dc2626, #ef4444);
     color: white;
     width: 30px;
     height: 30px;
@@ -148,12 +145,12 @@ body {
     justify-content: center;
     font-weight: 700;
     font-size: 0.9rem;
-    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.5);
+    box-shadow: 0 5px 15px rgba(220, 38, 38, 0.5);
     animation: bounce 2s ease-in-out infinite;
 }
 
 .challenge-header {
-    color: #ffd700;
+    color: #ffffff;
     font-size: 0.9rem;
     font-weight: 700;
     margin-bottom: 1rem;
@@ -184,23 +181,24 @@ body {
 }
 
 .fighter-avatar.challenger {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+    box-shadow: 0 5px 15px rgba(220, 38, 38, 0.4);
 }
 
 .fighter-avatar.defender {
-    background: linear-gradient(135deg, #ff6b35, #f7931e);
-    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+    background: linear-gradient(135deg, #ffffff, #f3f4f6);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
+    color: #1a1a1a;
 }
 
 .fighter-name.challenger {
-    color: #00ff9d;
+    color: #dc2626;
     font-weight: 700;
     font-size: 0.9rem;
 }
 
 .fighter-name.defender {
-    color: #ff6b35;
+    color: #ffffff;
     font-weight: 700;
     font-size: 0.9rem;
 }
@@ -208,7 +206,7 @@ body {
 .vs-text {
     font-size: 1.5rem;
     font-weight: 900;
-    color: #ffd700;
+    color: #ffffff;
     margin: 0 1rem;
 }
 
@@ -221,7 +219,7 @@ body {
 }
 
 .challenge-exercise {
-    color: #00ff9d;
+    color: #dc2626;
     font-weight: 600;
     font-size: 0.8rem;
     margin-bottom: 0.5rem;
@@ -245,7 +243,7 @@ body {
 .reps-number {
     font-size: 1.5rem;
     font-weight: 900;
-    color: #ff6b35;
+    color: #dc2626;
     font-family: 'Courier New', monospace;
 }
 
@@ -255,7 +253,7 @@ body {
 }
 
 .number-multiply {
-    color: #ffd700;
+    color: #ffffff;
     font-size: 1.2rem;
 }
 
@@ -286,8 +284,8 @@ body {
 }
 
 .btn-accept {
-    background: linear-gradient(135deg, #00ff9d, #00cc7a);
-    color: #000;
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+    color: #ffffff;
 }
 
 .btn-decline {
@@ -328,7 +326,7 @@ body {
 }
 
 .demo-eyebrow {
-    color: #ff6b35;
+    color: #dc2626;
     font-size: 1rem;
     font-weight: 700;
     margin-bottom: 1rem;
@@ -340,10 +338,7 @@ body {
     font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: 800;
     margin: 0 0 2rem 0;
-    background: linear-gradient(135deg, #ffffff 0%, #ffd700 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #ffffff;
 }
 
 .demo-cta {
@@ -367,7 +362,7 @@ body {
         0 30px 60px rgba(0, 0, 0, 0.6),
         0 0 0 1px rgba(255, 255, 255, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 215, 0, 0.3);
+    border: 1px solid rgba(220, 38, 38, 0.4);
     position: relative;
     overflow: hidden;
 }
@@ -378,7 +373,7 @@ body {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(220, 38, 38, 0.08) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -396,10 +391,7 @@ body {
     font-size: 2rem;
     font-weight: 800;
     margin: 0 0 0.5rem 0;
-    background: linear-gradient(135deg, #ffd700, #ffed4e);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #ffffff;
 }
 
 .form-subtitle {
@@ -409,7 +401,7 @@ body {
 }
 
 .launch-badge {
-    background: linear-gradient(135deg, #ff6b35, #f7931e);
+    background: linear-gradient(135deg, #dc2626, #ef4444);
     color: white;
     padding: 0.8rem 1.5rem;
     border-radius: 15px;
@@ -417,7 +409,7 @@ body {
     margin-bottom: 2rem;
     font-weight: 700;
     font-size: 0.9rem;
-    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
 }
 
 /* Form Styles */
@@ -448,8 +440,8 @@ body {
 
 .form-input:focus {
     outline: none;
-    border-color: rgba(0, 255, 157, 0.5);
-    box-shadow: 0 0 0 3px rgba(0, 255, 157, 0.1);
+    border-color: rgba(220, 38, 38, 0.5);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
 }
 
 .form-input::placeholder {
@@ -478,8 +470,8 @@ body {
 
 .form-select:focus {
     outline: none;
-    border-color: rgba(0, 255, 157, 0.5);
-    box-shadow: 0 0 0 3px rgba(0, 255, 157, 0.1);
+    border-color: rgba(220, 38, 38, 0.5);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
 }
 
 .form-select option {
@@ -510,13 +502,13 @@ body {
 }
 
 .checkbox-group a {
-    color: #00ff9d;
+    color: #dc2626;
     text-decoration: none;
 }
 
 .btn-submit {
-    background: linear-gradient(135deg, #00ff9d, #00cc7a);
-    color: #000;
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+    color: #ffffff;
     border: none;
     padding: 1.4rem 2rem;
     border-radius: 15px;
@@ -524,7 +516,7 @@ body {
     font-size: 1.2rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 10px 25px rgba(0, 255, 157, 0.3);
+    box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-top: 1rem;
@@ -532,7 +524,7 @@ body {
 
 .btn-submit:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(0, 255, 157, 0.4);
+    box-shadow: 0 15px 35px rgba(220, 38, 38, 0.4);
 }
 
 .app-store-preview {
@@ -597,10 +589,7 @@ body {
     font-size: 2.5rem;
     font-weight: 800;
     margin-bottom: 3rem;
-    background: linear-gradient(135deg, #ffffff 0%, #ffd700 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #ffffff;
 }
 
 .features-grid {
@@ -637,15 +626,15 @@ body {
 }
 
 .feature-card h4.send {
-    color: #00ff9d;
+    color: #dc2626;
 }
 
 .feature-card h4.battle {
-    color: #ff6b35;
+    color: #ef4444;
 }
 
 .feature-card h4.victory {
-    color: #ffd700;
+    color: #ffffff;
 }
 
 .feature-card p {
@@ -687,13 +676,13 @@ body {
         box-shadow: 
             0 20px 40px rgba(0, 0, 0, 0.6),
             0 0 0 1px rgba(255, 255, 255, 0.1),
-            0 0 0 0px rgba(255, 215, 0, 0.4);
+            0 0 0 0px rgba(220, 38, 38, 0.4);
     }
     50% { 
         box-shadow: 
             0 25px 50px rgba(0, 0, 0, 0.7),
             0 0 0 1px rgba(255, 255, 255, 0.1),
-            0 0 0 8px rgba(255, 215, 0, 0.2);
+            0 0 0 8px rgba(220, 38, 38, 0.2);
     }
 }
 
