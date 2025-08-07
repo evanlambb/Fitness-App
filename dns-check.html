@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNS Check - DareFitness.ca</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .check-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+        }
+        .status {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        .status.success { background: #28a745; }
+        .status.warning { background: #ffc107; color: #000; }
+        .status.error { background: #dc3545; }
+        .code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .link {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+        .test-button {
+            background: #ffd700;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px 5px;
+        }
+        .test-button:hover {
+            background: #ffed4e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 DNS Configuration Check</h1>
+        
+        <div class="check-item">
+            <h3>1. GitHub Pages Status</h3>
+            <p>Check if your GitHub Pages is properly configured:</p>
+            <a href="https://github.com/yourusername/Fitness-App/settings/pages" class="link" target="_blank">
+                Go to GitHub Pages Settings →
+            </a>
+            <p><strong>Required settings:</strong></p>
+            <ul>
+                <li>Source: Deploy from a branch</li>
+                <li>Branch: main (or master)</li>
+                <li>Custom domain: darefitness.ca</li>
+                <li>Enforce HTTPS: ✓ checked</li>
+            </ul>
+        </div>
+
+        <div class="check-item">
+            <h3>2. DNS Records Required</h3>
+            <p>Add these <strong>A records</strong> to your domain's DNS settings:</p>
+            <div class="code">
+Type: A<br>
+Name: @ (or leave blank)<br>
+Value: 185.199.108.153<br><br>
+
+Type: A<br>
+Name: @ (or leave blank)<br>
+Value: 185.199.109.153<br><br>
+
+Type: A<br>
+Name: @ (or leave blank)<br>
+Value: 185.199.110.153<br><br>
+
+Type: A<br>
+Name: @ (or leave blank)<br>
+Value: 185.199.111.153
+            </div>
+        </div>
+
+        <div class="check-item">
+            <h3>3. DNS Propagation Test</h3>
+            <p>Test if your DNS is propagating correctly:</p>
+            <button class="test-button" onclick="testDNS()">Test DNS Resolution</button>
+            <button class="test-button" onclick="window.open('https://whatsmydns.net/#A/darefitness.ca', '_blank')">
+                Check Global DNS
+            </button>
+            <div id="dns-result"></div>
+        </div>
+
+        <div class="check-item">
+            <h3>4. Common Issues</h3>
+            <ul>
+                <li><strong>Wrong DNS records:</strong> Make sure you're using A records, not CNAME for root domain</li>
+                <li><strong>Propagation time:</strong> Can take 24-48 hours for global propagation</li>
+                <li><strong>Wrong IP addresses:</strong> Use the exact GitHub Pages IPs listed above</li>
+                <li><strong>Domain registrar issues:</strong> Some registrars have specific DNS setup requirements</li>
+            </ul>
+        </div>
+
+        <div class="check-item">
+            <h3>5. Quick Tests</h3>
+            <p>Try these URLs to test your setup:</p>
+            <ul>
+                <li><a href="https://darefitness.ca" class="link" target="_blank">https://darefitness.ca</a></li>
+                <li><a href="https://www.darefitness.ca" class="link" target="_blank">https://www.darefitness.ca</a></li>
+                <li><a href="https://darefitness.ca/domain-test.html" class="link" target="_blank">Domain Test Page</a></li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="/" class="link">← Back to main site</a>
+        </div>
+    </div>
+
+    <script>
+        function testDNS() {
+            const resultDiv = document.getElementById('dns-result');
+            resultDiv.innerHTML = '<p>Testing DNS resolution...</p>';
+            
+            // Simple DNS test using fetch
+            fetch('https://darefitness.ca', { 
+                method: 'HEAD',
+                mode: 'no-cors'
+            })
+            .then(() => {
+                resultDiv.innerHTML = '<p class="status success">✅ Domain is resolving! DNS appears to be working.</p>';
+            })
+            .catch(() => {
+                resultDiv.innerHTML = '<p class="status error">❌ Domain not resolving. Check DNS configuration.</p>';
+            });
+        }
+    </script>
+</body>
+</html> 
