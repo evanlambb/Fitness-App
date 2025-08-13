@@ -2,8 +2,8 @@
 CREATE TABLE IF NOT EXISTS fitness_signups (
     id BIGSERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
-    gym_name VARCHAR(255) NOT NULL,
-    training_level VARCHAR(50) NOT NULL CHECK (training_level IN ('intermediate', 'advanced', 'elite')),
+    gym_name VARCHAR(255),
+    training_level VARCHAR(50),
     terms_accepted BOOLEAN NOT NULL DEFAULT FALSE,
     signup_date TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     source VARCHAR(100) DEFAULT 'landing_page',
@@ -47,9 +47,8 @@ CREATE TRIGGER update_fitness_signups_updated_at
 CREATE OR REPLACE VIEW fitness_signup_stats AS
 SELECT 
     DATE_TRUNC('day', signup_date) as signup_day,
-    training_level,
     COUNT(*) as signup_count,
     source
 FROM fitness_signups 
-GROUP BY DATE_TRUNC('day', signup_date), training_level, source
-ORDER BY signup_day DESC; 
+GROUP BY DATE_TRUNC('day', signup_date), source
+ORDER BY signup_day DESC;

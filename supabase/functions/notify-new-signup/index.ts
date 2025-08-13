@@ -6,8 +6,8 @@ const NOTIFICATION_EMAIL = Deno.env.get('NOTIFICATION_EMAIL') || 'darefitness14@
 
 interface SignupData {
   email: string
-  gym_name: string
-  training_level: string
+  gym_name?: string | null
+  training_level?: string | null
   signup_date: string
   source: string
 }
@@ -67,7 +67,7 @@ async function sendEmailNotification(signupData: SignupData) {
     body: JSON.stringify({
       from: 'Fitness App <notifications@yourdomain.com>',
       to: [NOTIFICATION_EMAIL],
-      subject: `🔥 New Early Access Signup: ${signupData.gym_name}`,
+      subject: `🔥 New Early Access Signup: ${signupData.email}`,
       html: emailBody,
     }),
   })
@@ -107,24 +107,18 @@ function generateEmailHTML(signupData: SignupData): string {
           <div class="title">🔥 New Early Access Signup!</div>
         </div>
         
-        <div class="info-grid">
-          <div class="info-item">
-            <div class="info-label">Gym Name</div>
-            <div class="info-value">${signupData.gym_name}</div>
-          </div>
+          <div class="info-grid">
           <div class="info-item">
             <div class="info-label">Email</div>
             <div class="info-value">${signupData.email}</div>
           </div>
           <div class="info-item">
-            <div class="info-label">Training Level</div>
-            <div class="info-value">
-              <span class="training-level">${signupData.training_level.toUpperCase()}</span>
-            </div>
-          </div>
-          <div class="info-item">
             <div class="info-label">Signup Date</div>
             <div class="info-value">${signupDate}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Source</div>
+            <div class="info-value">${signupData.source}</div>
           </div>
         </div>
         
@@ -154,7 +148,7 @@ async function sendSlackNotification(signupData: SignupData) {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: `*🔥 New Early Access Signup!*\n\n*Gym Name:* ${signupData.gym_name}\n*Email:* ${signupData.email}\n*Training Level:* ${signupData.training_level}\n*Source:* ${signupData.source}`
+          text: `*🔥 New Early Access Signup!*\n\n*Email:* ${signupData.email}\n*Source:* ${signupData.source}`
         }
       }
     ]

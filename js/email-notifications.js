@@ -30,9 +30,7 @@ async function sendSignupNotification(signupData) {
         const templateParams = {
             to_email: 'darefitness14@gmail.com', // Your notification email
             from_name: 'Fitness App Notifications',
-            user_name: signupData.gymName,
             user_email: signupData.email,
-            training_level: signupData.trainingLevel,
             signup_date: new Date().toLocaleDateString(),
             signup_time: new Date().toLocaleTimeString(),
             source: 'Landing Page'

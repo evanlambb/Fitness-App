@@ -696,12 +696,14 @@ body {
 @media (max-width: 768px) {
     /* Header Mobile */
     .header {
-        padding: 1rem;
+        padding: 1rem 1.25rem; /* small horizontal padding to avoid edge hugging */
     }
     
     .header-content {
-        flex-direction: column;
-        gap: 1rem;
+        flex-direction: row; /* logo left of icons */
+        align-items: center;
+        justify-content: center; /* center the group instead of pushing to edges */
+        gap: 1rem; /* natural spacing between logo and icons */
     }
     
     .logo-image {
@@ -710,6 +712,7 @@ body {
     
     .header-social-media {
         gap: 0.8rem;
+        margin-left: 0.5rem; /* slight breathing room from logo */
     }
     
     .header-social-media .social-icon {
@@ -732,7 +735,7 @@ body {
     
     /* Challenge Demo Mobile */
     .challenge-demo {
-        order: 1; /* Challenge demo first on mobile */
+        order: 2; /* Show challenge after signup on mobile */
         padding: 1rem 0;
         text-align: center;
     }
@@ -754,7 +757,7 @@ body {
     
     /* Signup Form Mobile */
     .signup-container {
-        order: 2; /* Signup form second on mobile */
+        order: 1; /* Signup first on mobile */
         position: static;
         top: auto;
         width: 100%;

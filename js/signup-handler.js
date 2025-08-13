@@ -8,20 +8,18 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault()
         
         // Get form data
-        const formData = new FormData(signupForm)
-        const email = signupForm.querySelector('input[type="email"]').value.trim()
-        const gymName = signupForm.querySelector('input[type="text"]').value.trim()
-        const trainingLevel = signupForm.querySelector('select').value
-        const termsAccepted = signupForm.querySelector('#terms').checked
+		const formData = new FormData(signupForm)
+		const email = signupForm.querySelector('input[type="email"]').value.trim()
+		const termsAccepted = signupForm.querySelector('#terms').checked
         
         // Validate form
-        if (!email || !gymName || !trainingLevel || !termsAccepted) {
-            showMessage('Please fill in all fields and accept the terms.', 'error')
+		if (!email || !termsAccepted) {
+			showMessage('Please enter your email and accept the terms.', 'error')
             // Track validation error
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'form_validation_error', {
                     event_category: 'signup',
-                    event_label: 'incomplete_form'
+					event_label: 'incomplete_form_email_terms'
                 })
             }
             return
@@ -52,8 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 .insert([
                     {
                         email: email,
-                        gym_name: gymName,
-                        training_level: trainingLevel,
                         terms_accepted: termsAccepted,
                         signup_date: new Date().toISOString(),
                         source: 'landing_page'
@@ -71,11 +67,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'sign_up', {
                     event_category: 'engagement',
-                    event_label: 'early_access_signup',
-                    custom_parameters: {
-                        training_level: trainingLevel,
-                        source: 'landing_page'
-                    }
+					event_label: 'early_access_signup',
+					custom_parameters: {
+						source: 'landing_page'
+					}
                 })
                 
                 // Track as conversion
@@ -86,11 +81,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Send email notification if available
             if (typeof sendSignupNotification === 'function') {
-                sendSignupNotification({
-                    gymName: gymName,
-                    email: email,
-                    trainingLevel: trainingLevel
-                })
+				sendSignupNotification({
+					email: email
+				})
             }
             
             // Reset form
@@ -121,8 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 showMessage('Database table not found. Please run the SQL schema in Supabase.', 'error')
             } else if (error.message?.includes('JWT') || error.message?.includes('Invalid API key')) {
                 showMessage('Authentication error. Please check your Supabase configuration.', 'error')
-            } else if (error.message?.includes('violates check constraint')) {
-                showMessage('Please select a valid training level from the dropdown.', 'error')
             } else {
                 showMessage(`Error: ${error.message || 'Something went wrong. Please try again.'}`, 'error')
             }
