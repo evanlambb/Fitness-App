@@ -1,6 +1,6 @@
 # New Signup Email Notification Function
 
-This Supabase Edge Function sends email notifications when new users sign up for early access.
+This Supabase Edge Function sends email notifications when new users sign up for early access. It currently emails the signup's email address, signup timestamp, and source.
 
 ## Setup Instructions
 
@@ -24,12 +24,14 @@ supabase functions deploy notify-new-signup
 # Set your Resend API key (or other email service)
 supabase secrets set RESEND_API_KEY=your_resend_api_key_here
 
-# Set notification email address
-supabase secrets set NOTIFICATION_EMAIL=darefitness14@gmail.com
+# Set notification email address (fallback defaults to darefitness14@gmail.com if not set)
+supabase secrets set NOTIFICATION_EMAIL=your_notification_email@yourdomain.com
 
 # Optional: Slack webhook for additional notifications
 supabase secrets set SLACK_WEBHOOK_URL=your_slack_webhook_url_here
 ```
+
+Note: The function sends with `from: "Fitness App <notifications@yourdomain.com>"`. Ensure this domain/address is verified in your email provider (e.g., Resend) or update it in `index.ts`.
 
 ### 5. Create Database Webhook
 In your Supabase Dashboard:
@@ -40,9 +42,9 @@ In your Supabase Dashboard:
    - **Events:** `INSERT`
    - **Type:** `HTTP Request`
    - **HTTP URL:** `https://your-project.supabase.co/functions/v1/notify-new-signup`
-   - **HTTP Headers:** 
-     - `Authorization: Bearer YOUR_ANON_KEY`
-     - `Content-Type: application/json`
+   - **HTTP Headers:** None required by the current function
+
+Security note: The current implementation does not validate headers. If you want to restrict access, add a shared secret header in the webhook and verify it in `index.ts` before processing the request.
 
 ## Email Services Options
 
@@ -70,8 +72,6 @@ curl -X POST http://localhost:54321/functions/v1/notify-new-signup \
   -d '{
     "record": {
       "email": "test@example.com",
-      "gym_name": "Test User",
-      "training_level": "intermediate",
       "signup_date": "2025-01-01T12:00:00Z",
       "source": "landing_page"
     }
@@ -80,10 +80,11 @@ curl -X POST http://localhost:54321/functions/v1/notify-new-signup \
 
 ## What You'll Receive
 
-When someone signs up, you'll get a beautifully formatted email with:
+When someone signs up, you'll get a formatted email with:
 - 🔥 New signup notification
-- User's gym name and email
-- Training level badge
-- Signup timestamp
-- Source information
-- Professional HTML design matching your app's theme 
+- **Email** of the signer
+- **Signup timestamp**
+- **Source** (e.g., `landing_page`)
+- Professional HTML design matching your app's theme
+
+Customization: You can adjust the email content and styling in `generateEmailHTML` within `index.ts`. Slack notifications are available via `sendSlackNotification` (currently not called by default).
